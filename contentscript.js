@@ -6,5 +6,7 @@ var lastmodified = document.lastModified,
 chrome.extension.onMessage.addListener(function (message, sender, sendResponse) {
     //this will fire when asked for info by the popup
     //alert("message received from tab" + message);
-    sendResponse({"url": url, "lastmodified": lastmodified});
+    var d=new Date(lastmodified),
+        datetime=d.toUTCString();
+    sendResponse({"url": url, "lastmodified": datetime});
 });
